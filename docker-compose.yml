@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  master_server:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/master_server
+    ports:
+      - 50051:50051
+
+  chunk_server_01:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/chunk_server
+    ports:
+      - 50052:50052
+
+  chunk_server_02:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/chunk_server
+    ports:
+      - 50053:50053
+
+  chunk_server_03:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/chunk_server
+    ports:
+      - 50054:50054
+
+  chunk_server_04:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/chunk_server
+    ports:
+      - 50055:50055
+
+  client:
+    build:
+      context: ./src
+    volumes:
+      - ./src:/app/client

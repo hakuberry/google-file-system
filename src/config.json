@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "chunk_server_root": "root_chunkserver",
+    "chunk_size": 4,
+    "servers": {
+        "master_servers": [
+            "master_server"
+        ],
+        "chunk_servers": [
+            "chunk_server_01",
+            "chunk_server_02",
+            "chunk_server_03",
+            "chunk_server_04"
+        ]
+    },
+    "network": {
+        "master_server": {
+            "hostname": "master_server",
+            "port": 50051
+        },
+        "chunk_server_01": {
+            "hostname": "chunk_server_01",
+            "port": 50052
+        },
+        "chunk_server_02": {
+            "hostname": "chunk_server_02",
+            "port": 50053
+        },
+        "chunk_server_03": {
+            "hostname": "chunk_server_03",
+            "port": 50054
+        },
+        "chunk_server_04": {
+            "hostname": "chunk_server_04",
+            "port": 50055
+        }
+    }
+}
