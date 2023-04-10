@@ -1,6 +1,6 @@
 import grpc
 import gfs_pb2_grpc
-import1 gfs_pb2
+import gfs_pb2
 import uuid
 
 from util import Config
@@ -196,6 +196,64 @@ class MasterServer(object):
             return Status(0, "SUCCESS: File {} is restored!".format(file_path))
 
 
+class MasterServerServicer(gfs_pb2_grpc.MasterServerServicer):
+    def __init__(self, master):
+        self.master = master
+
+    def ListFiles(self, request, context):
+        file_path = request.st
+        print("Command list {}".format(file_path))
+        file_list = self.master.listFiles(file_path)
+        st = "|".join(file_list)
+        return gfs_pb2.String(st=st)
+
+    def CreateFile(self, request, context):
+        file_path = request.st
+        print("Command create {}".format(file_path))
+        chunk_handle, locations, status = self.master.createFile(file_path)
+
+        if status.code != 0:
+            return gfs_pb2.String(st=status.msg)
+
+        st = chunk_handle + "|" + "|".join(locations)
+        return gfs_pb2.String(st=st)
+
+    def AppendFile(self, request, context):
+        file_path = request.st
+        print("Command append {}".format(file_path))
+        latest_chunk_handle, locations, status = self.master.appendFile(file_path)
+
+        if status.code != 0:
+            return gfs_pb2.String(st=st)
+
+        st = latest_chunk_handle + "|" + "|".join(locations)
+        return gfs_pb2.String(st=st)
+
+    def CreateChunk(self, request, context):
+        file_path = request.st
+        print("Command create chunk {} {}".format(file_path, prev_chunk_handle))
+        chunk_handle, locations, status = self.master.createChunk(file_path, prev_chunk_handle)
+        st = chunk_handle + "|" + "|".join(locations)
+        return gfs_pb2.String(st=st)
+
+    def ReadFile(self, request, context):
+        file_path, offset, byte_count = request.st.split("|")
+        print("Command read file {} {} {}".format(file_path, offset, byte_count))
+        status = self.master.readFile(file_path, int(offset), int(byte_count))
+        return gfs_pb2.String(st=status.msg)
+
+    def DeleteFile(self, request, context):
+        file_path = request.st
+        print("Command delete file {}").format(file_path)
+        status = self.master.deleteFile(file_path)
+        return gfs_pb2.String(st=status.msg)
+
+    def UndeleteFile(self, request, context):
+        file_path = request.st
+        print("Command undelete file {}").format(file_path)
+        status = self.master.undeleteFile(file_path)
+        return gfs_pb2.String(st=status.msg)
+
 class Chunk(object):
     def __init__(self):
         self.locations = []
@@ -207,3 +265,17 @@ class File(object):
         self.chunks = OrderedDict()
         self.delete = False
 
+
+def __name__ == "__main__":
+    master = MasterServer()
+
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=3))
+    gfs_pb2_grpc.add_MasterServerServicer_to_server(MasterServerServicer(master=master), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    
+    try:
+        while True:
+            time.sleep(2000)
+    except KeyboardInterrupt:
+        server.stop(0)
