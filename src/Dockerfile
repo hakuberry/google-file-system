@@ -11,8 +11,7 @@ WORKDIR /app
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install --no-cache-dir -r /tmp/requirements.txt && \
-    rm -rf /tmp && \
-    grpc_tools.protoc -I. --python_out=. --grpc_python_out=. src/gfs.proto
+    rm -rf /tmp
 
 
 ENV PATH="/py/bin:$PATH"
