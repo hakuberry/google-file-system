@@ -5,7 +5,7 @@ LABEL maintainer="hakuberry"
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
-COPY . /app
+COPY ./src /app
 WORKDIR /app
 
 RUN python -m venv /py && \

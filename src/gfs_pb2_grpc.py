@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from src import gfs_pb2 as src_dot_gfs__pb2
+import gfs_pb2 as gfs__pb2
 
 
 class MasterServerStub(object):
@@ -16,33 +16,33 @@ class MasterServerStub(object):
         """
         self.ListFiles = channel.unary_unary(
                 '/gfs.MasterServer/ListFiles',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.CreateFile = channel.unary_unary(
                 '/gfs.MasterServer/CreateFile',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.AppendFile = channel.unary_unary(
                 '/gfs.MasterServer/AppendFile',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.CreateChunk = channel.unary_unary(
                 '/gfs.MasterServer/CreateChunk',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.ReadFile = channel.unary_unary(
                 '/gfs.MasterServer/ReadFile',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.DeleteFile = channel.unary_unary(
                 '/gfs.MasterServer/DeleteFile',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
 
 
@@ -90,33 +90,33 @@ def add_MasterServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ListFiles': grpc.unary_unary_rpc_method_handler(
                     servicer.ListFiles,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'CreateFile': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateFile,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'AppendFile': grpc.unary_unary_rpc_method_handler(
                     servicer.AppendFile,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'CreateChunk': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateChunk,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'ReadFile': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadFile,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'DeleteFile': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteFile,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -140,8 +140,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/ListFiles',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -157,8 +157,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/CreateFile',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -174,8 +174,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/AppendFile',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -191,8 +191,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/CreateChunk',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -208,8 +208,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/ReadFile',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -225,8 +225,8 @@ class MasterServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.MasterServer/DeleteFile',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -242,18 +242,18 @@ class ChunkServerStub(object):
         """
         self.Create = channel.unary_unary(
                 '/gfs.ChunkServer/Create',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.Append = channel.unary_unary(
                 '/gfs.ChunkServer/Append',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
         self.Read = channel.unary_unary(
                 '/gfs.ChunkServer/Read',
-                request_serializer=src_dot_gfs__pb2.String.SerializeToString,
-                response_deserializer=src_dot_gfs__pb2.String.FromString,
+                request_serializer=gfs__pb2.String.SerializeToString,
+                response_deserializer=gfs__pb2.String.FromString,
                 )
 
 
@@ -283,18 +283,18 @@ def add_ChunkServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Create': grpc.unary_unary_rpc_method_handler(
                     servicer.Create,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'Append': grpc.unary_unary_rpc_method_handler(
                     servicer.Append,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
             'Read': grpc.unary_unary_rpc_method_handler(
                     servicer.Read,
-                    request_deserializer=src_dot_gfs__pb2.String.FromString,
-                    response_serializer=src_dot_gfs__pb2.String.SerializeToString,
+                    request_deserializer=gfs__pb2.String.FromString,
+                    response_serializer=gfs__pb2.String.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -318,8 +318,8 @@ class ChunkServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.ChunkServer/Create',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -335,8 +335,8 @@ class ChunkServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.ChunkServer/Append',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -352,7 +352,7 @@ class ChunkServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/gfs.ChunkServer/Read',
-            src_dot_gfs__pb2.String.SerializeToString,
-            src_dot_gfs__pb2.String.FromString,
+            gfs__pb2.String.SerializeToString,
+            gfs__pb2.String.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -2,13 +2,15 @@ import grpc
 import gfs_pb2_grpc
 import gfs_pb2
 import uuid
+from concurrent import futures
+import time
 
 from util import Config
 from util import Util
 from util import Status
 
 
-class MetaDeta(object):
+class MetaData(object):
     def __init__(self):
         cfg = Config('config.json')
         utl = Util('config.json')
@@ -86,7 +88,7 @@ class MasterServer(object):
             return Status(-1, "ERROR: File {} does not exist!".format(file_path))
         elif self.meta.files[file_path].delete is True:
             return Status(-1, "ERROR: File {} is already deleted!".format(file_path))
-        else
+        else:
             return Status(0, "SUCCESS: File {} exists!".format(file_path))
 
     def listFiles(self, file_path):
@@ -160,7 +162,7 @@ class MasterServer(object):
 
             if idx == len(all_chunk_handles) - 1:
                 enof = end_offset
-            else
+            else:
                 enof = chunk_size - 1
 
             location = self.meta.files[file_path].chunks[chunk_handle].locations[0]
@@ -266,7 +268,7 @@ class File(object):
         self.delete = False
 
 
-def __name__ == "__main__":
+if __name__ == "__main__":
     master = MasterServer()
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=3))

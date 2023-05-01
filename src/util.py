@@ -53,10 +53,10 @@ class Util(object):
         ]
 
        
-cfg = Config('config.json')          
+#cfg = Config('config.json')          
 #cfg.getServerHostname('master_server')
 #test = cfg.getChunkLocations()
 #print(test)
-util = Util('config.json')
-test = util.chooseLocations()
-print(test)
+#util = Util('config.json')
+#test = util.chooseLocations()
+#print(test)
