@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package gfs;
+
+service MasterServer {
+    rpc ListFiles(String) returns (String) {}
+    rpc CreateFile(String) returns (String) {}
+    rpc AppendFile(String) returns (String) {}
+    rpc CreateChunk(String) returns (String) {}
+    rpc ReadFile(String) returns (String) {}
+    rpc DeleteFile(String) returns (String) {}
+}
+
+service ChunkServer {
+    rpc Create(String) returns (String) {}
+    rpc Append(String) returns (String) {}
+    rpc Read(String) returns (String) {}
+}
+
+message String {
+    string st = 1;
+}
+
+message Empty {
+}

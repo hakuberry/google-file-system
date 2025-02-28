@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  master_server:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/master_server
+    command: sh -c "python master_server.py"
+    ports:
+      - 50051:50051
+
+  chunk_server_01:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/chunk_server
+    command: sh -c "python chunk_server.py 50052"
+    ports:
+      - 50052:50052
+    depends_on:
+      - master_server
+
+  chunk_server_02:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/chunk_server
+    command: sh -c "python chunk_server.py 50053"
+    ports:
+      - 50053:50053
+    depends_on:
+      - master_server
+
+  chunk_server_03:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/chunk_server
+    command: sh -c "python chunk_server.py 50054"
+    ports:
+      - 50054:50054
+    depends_on:
+      - master_server
+
+  chunk_server_04:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/chunk_server
+    command: sh -c "python chunk_server.py 50055"
+    ports:
+      - 50055:50055
+    depends_on:
+      - master_server
+
+  client:
+    build:
+      context: .
+    volumes:
+      - ./src:/app/client
+    depends_on:
+      - master_server
